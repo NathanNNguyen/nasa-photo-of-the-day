@@ -11,5 +11,4 @@ const Nav = () => {
     </NavDiv>
   )
 }
-
 export default Nav

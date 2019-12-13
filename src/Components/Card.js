@@ -6,6 +6,7 @@ import Flex from './Flex';
 import Desc from './Flex/Desc';
 import Img from './Flex/Img';
 import Title from './Title';
+import Footer from './Footer/Footer'
 import axios from 'axios';
 
 export default function Card() {
@@ -32,6 +33,7 @@ export default function Card() {
         <Img alt='img' src={nasa.hdurl} />
         <Desc>{nasa.explanation}</Desc>
       </Flex>
+      <Footer></Footer>
     </Container>
   )
 }
