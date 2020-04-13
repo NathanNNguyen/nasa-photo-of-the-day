@@ -1,8 +1,0 @@
-import styled from 'styled-components'
-
-const NavDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-export default NavDiv
