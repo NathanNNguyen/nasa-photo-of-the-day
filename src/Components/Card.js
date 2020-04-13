@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Navigation from './Navigation';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+import Navigation from './Navigation'
 
 const Container = styled.div`
   height: 70rem;
@@ -37,32 +37,45 @@ const Date = styled.h4`
   font-weight: 500;
 `;
 
-export default function Card() {
-  const [nasa, setNasa] = useState([]);
+const Card = ({ date, previousDate, nextDate }) => {
+
+  const [photo, setPhoto] = useState([]);
 
   useEffect(() => {
-    const didUpdate = async () => {
-      const res = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=TGqMFaRRisXXnB98NdYHgBe9cPHuu98zjYRAZHFl`)
+    const getData = async () => {
+      const res = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=d6VskTQApM8BQeNQ7m6Tm71eqdfqpvK2rXx03hKp&date=${date}`);
       try {
-        setNasa(res.data);
-        console.log(res);
+        // console.log(res.data)
+        setPhoto(res.data)
       }
       catch (err) {
         console.log(err)
       }
     }
-    didUpdate();
-  }, []);
+    getData();
+  }, [date])
+
+  // useEffect(() => {
+  //   axios.get(`https://api.nasa.gov/planetary/apod?api_key=d6VskTQApM8BQeNQ7m6Tm71eqdfqpvK2rXx03hKp&date=${date}`)
+  //     .then(res => setPhoto(res.data))
+  //     .catch(err => console.log(err))
+  // }, [date])
 
   return (
     <Container>
       <Navigation />
-      <Title>{nasa.title}</Title>
-      <Date>{nasa.date}</Date>
+      <button onClick={previousDate}>Previous</button>
+      <button onClick={nextDate}>Next</button>
+      <Title>{photo.title}</Title>
+      <Date>{photo.date}</Date>
       <Flex>
-        <Img alt='img' src={nasa.hdurl} />
-        <Desc>{nasa.explanation}</Desc>
+        <Img alt='img' src={photo.hdurl} />
+        <Desc>{photo.explanation}</Desc>
       </Flex>
+
     </Container>
   )
+
 }
+
+export default Card

@@ -27,7 +27,6 @@ const Nav = () => {
     <NavDiv>
       <NavItem href='#'>Home</NavItem>
       <NavItem href='https://nathannguyen.netlify.com/' target='_blank'>About me</NavItem>
-      {/* <span role='img' aria-label='dog'>🐶</span> */}
     </NavDiv>
   )
 }
