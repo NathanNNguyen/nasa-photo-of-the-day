@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Navigation from './Navigation'
 
 const Container = styled.div`
   height: 70rem;
-  background-color: palegoldenrod;
-  margin: auto;
+  background-image: url('https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-h-p2001a-m-2000x1500_0.png');
+  padding-top: 2rem;
 `;
 
 const Title = styled.h1`
   padding-top: 1.5rem;
-  color: black;
+  color: white;
 `;
 
 const Desc = styled.h5`
@@ -22,11 +21,17 @@ const Desc = styled.h5`
   flex-direction: column;
   justify-content: center;
   font-weight: 500;
+  color: white;
 `;
 
 const Img = styled.img`
   width: 20%;
   padding: 2%;
+  transition: all .5s;
+  &:hover{
+    transform: scale(1.3)
+    
+    }
 `;
 
 const Flex = styled.div`
@@ -35,6 +40,7 @@ const Flex = styled.div`
 
 const Date = styled.h4`
   font-weight: 500;
+  color: white;
 `;
 
 const Card = ({ date, previousDate, nextDate }) => {
@@ -45,7 +51,6 @@ const Card = ({ date, previousDate, nextDate }) => {
     const getData = async () => {
       const res = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=d6VskTQApM8BQeNQ7m6Tm71eqdfqpvK2rXx03hKp&date=${date}`);
       try {
-        // console.log(res.data)
         setPhoto(res.data)
       }
       catch (err) {
@@ -55,24 +60,16 @@ const Card = ({ date, previousDate, nextDate }) => {
     getData();
   }, [date])
 
-  // useEffect(() => {
-  //   axios.get(`https://api.nasa.gov/planetary/apod?api_key=d6VskTQApM8BQeNQ7m6Tm71eqdfqpvK2rXx03hKp&date=${date}`)
-  //     .then(res => setPhoto(res.data))
-  //     .catch(err => console.log(err))
-  // }, [date])
-
   return (
     <Container>
-      <Navigation />
-      <button onClick={previousDate}>Previous</button>
-      <button onClick={nextDate}>Next</button>
       <Title>{photo.title}</Title>
       <Date>{photo.date}</Date>
+      <button onClick={previousDate}>Previous</button>
+      <button onClick={nextDate}>Next</button>
       <Flex>
         <Img alt='img' src={photo.hdurl} />
         <Desc>{photo.explanation}</Desc>
       </Flex>
-
     </Container>
   )
 

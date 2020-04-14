@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./Components/Card";
 
 function App() {
 
-  const [count, setCount] = useState(-1);
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const newDate = new Date().setDate(new Date().getDate() + count);
+    setDate(dateFormat(newDate))
+    // console.log(count)
+  }, [count])
 
   const dateFormat = (date) => {
     let d = new Date(date);
@@ -18,19 +25,13 @@ function App() {
 
   const previousDate = () => {
     setCount(count - 1);
-    console.log(count)
-    const newDate = new Date().setDate(new Date().getDate() + count);
-    // console.log(newDate)
-    setDate(dateFormat(newDate))
+
   }
 
   const nextDate = (e) => {
-    e.preventDefault()
     setCount(count + 1);
-    console.log(count)
-    const newDate = new Date().setDate(new Date().getDate() + count)
-    setDate(dateFormat(newDate))
   }
+
   return (
     <div className="App">
       <Card date={date} previousDate={previousDate} nextDate={nextDate} />
