@@ -30,7 +30,6 @@ const Img = styled.img`
   transition: all .5s;
   &:hover{
     transform: scale(1.3)
-    
     }
 `;
 
@@ -44,7 +43,6 @@ const Date = styled.h4`
 `;
 
 const Card = ({ date, previousDate, nextDate }) => {
-
   const [photo, setPhoto] = useState([]);
 
   useEffect(() => {
@@ -72,7 +70,6 @@ const Card = ({ date, previousDate, nextDate }) => {
       </Flex>
     </Container>
   )
-
 }
 
 export default Card

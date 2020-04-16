@@ -3,8 +3,6 @@ import "./App.css";
 import Card from "./Components/Card";
 
 function App() {
-
-
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -22,10 +20,8 @@ function App() {
   }
 
   const [date, setDate] = useState(dateFormat(new Date()));
-
   const previousDate = () => {
     setCount(count - 1);
-
   }
 
   const nextDate = (e) => {
